@@ -115,6 +115,17 @@ check "ensure-label sin permiso sale con 2" test $? -eq 2
 check "ensure-label rechaza un tipo mal escrito" test $? -eq 1
 check "ensure-label es igual en create-issue y create-pr-base" cmp -s "$label" "${skills}/create-pr-base/scripts/ensure-label.sh"
 
+# check-title: inglés con verbo delante, sin tipo, sin número y con menos de 72 caracteres.
+title="${skills}/create-issue/scripts/check-title.sh"
+check "check-title acepta un título bien formado" bash "$title" "Add a delivery-workflow test note"
+check "check-title rechaza el tipo delante" bash -c "! bash '$title' 'docs: add a test note' 2>/dev/null"
+check "check-title rechaza el tipo con ámbito delante" bash -c "! bash '$title' 'feat(login): add the form' 2>/dev/null"
+check "check-title rechaza el número de la issue" bash -c "! bash '$title' 'Add the note for #50' 2>/dev/null"
+check "check-title rechaza la minúscula inicial" bash -c "! bash '$title' 'add a test note' 2>/dev/null"
+check "check-title rechaza el punto final" bash -c "! bash '$title' 'Add a test note.' 2>/dev/null"
+check "check-title rechaza 72 caracteres o más" bash -c "! bash '$title' 'Add $(printf 'x%.0s' {1..68})' 2>/dev/null"
+check "check-title es igual en create-issue y create-pr-base" cmp -s "$title" "${skills}/create-pr-base/scripts/check-title.sh"
+
 # create-pr-base: base detectada, draft, asignada y con etiqueta.
 echo "cuerpo" >"${work}/body.md"
 : >"$FAKE_GH_LOG"
@@ -123,6 +134,8 @@ check "la PR va contra staging, en draft, asignada y con etiqueta" grep -q -- "p
 : >"$FAKE_GH_LOG"
 FAKE_GH_LABEL_DENIED=1 "${skills}/create-pr-base/scripts/create-pr-base.sh" 5-knowledge-add-notes "Add notes" "${work}/body.md" fix >/dev/null 2>&1
 check "sin permiso de etiquetas, la PR sale sin etiqueta" bash -c "grep -q 'pr create' '$FAKE_GH_LOG' && ! grep -q -- '--label' <(grep 'pr create' '$FAKE_GH_LOG')"
+: >"$FAKE_GH_LOG"
+check "create-pr-base no abre la PR con el tipo en el título" bash -c "! '${skills}/create-pr-base/scripts/create-pr-base.sh' 5-knowledge-add-notes 'docs: add notes' '${work}/body.md' knowledge 2>/dev/null && ! grep -q 'pr create' '$FAKE_GH_LOG'"
 GIT_WORKFLOW_BASE=main "${skills}/create-pr-base/scripts/create-pr-base.sh" 5-knowledge-add-notes "Add notes" "${work}/body.md" feat >/dev/null 2>&1
 check "GIT_WORKFLOW_BASE cambia la base" grep -q -- "pr create --base main" "$FAKE_GH_LOG"
 

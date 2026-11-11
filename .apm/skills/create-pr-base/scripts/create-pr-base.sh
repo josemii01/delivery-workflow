@@ -50,6 +50,8 @@ title=$2
 body=$3
 type=$4
 
+bash "${here}/check-title.sh" "$title" >/dev/null || exit 1
+
 if [[ ! -f "$body" || ! -r "$body" ]]; then
   echo "El fichero del cuerpo debe existir y ser legible." >&2
   exit 1
