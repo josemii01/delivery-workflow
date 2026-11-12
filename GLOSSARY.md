@@ -113,3 +113,8 @@ _Evitar_: ronda (es del ciclo)
 **Documentos que mandan**:
 Los ficheros de documentación del proyecto que el cambio tiene que obedecer y contra los que se compara el código.
 _Evitar_: referencias, fuentes
+
+## Modelos
+
+**Nivel**:
+Grado de exigencia de la tarea de un agente: pesado, estándar o ligero. Cada herramienta determina qué modelo, entre los disponibles, corresponde a cada nivel.
