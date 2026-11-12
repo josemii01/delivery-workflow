@@ -113,3 +113,7 @@ _Evitar_: ronda (es del ciclo)
 **Documentos que mandan**:
 Los ficheros de documentación del proyecto que el cambio tiene que obedecer y contra los que se compara el código.
 _Evitar_: referencias, fuentes
+
+**Say it straight**:
+Skill del paquete que fija la prosa en español de issues, spec, PRs y docs: declarativa, sin relleno defensivo. No rige commits ni el chat del orquestador. **Fuera de esto** en una issue es alcance, no disclaimer.
+_Evitar_: prose, copywriting
