@@ -117,3 +117,8 @@ _Evitar_: referencias, fuentes
 **Say it straight**:
 Skill del paquete que fija la prosa en español de issues, spec, PRs y docs: declarativa, sin relleno defensivo. No rige commits ni el chat del orquestador. **Fuera de esto** en una issue es alcance, no disclaimer.
 _Evitar_: prose, copywriting
+
+## Modelos
+
+**Nivel**:
+Grado de exigencia de la tarea de un agente: pesado, estándar o ligero. Cada herramienta determina qué modelo, entre los disponibles, corresponde a cada nivel.
