@@ -54,10 +54,6 @@ Precedencia:
 
 «Cabe destacar», «es importante mencionar», «no se pretende», «esto no quiere decir», «en este sentido», «a día de hoy», «básicamente», «simplemente», «obviamente», «claro está», cadenas del tipo «podría quizás potencialmente».
 
-### Comprobación (`concept-tester`)
-
-Falla si la prosa incumple estas reglas aunque coincida con el código. Cita la frase y la regla. No edites.
-
 ### Inspiración
 
 Reglas destiladas de guías de prosa técnica y de estilo claro; no se copian skills externas en el paquete.
